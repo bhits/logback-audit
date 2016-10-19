@@ -128,13 +128,13 @@ public class AuditEventDAOTest extends PersistorTestBase {
   public void testBigColumn() {
     AuditEvent ae = new AuditEvent();
     StringBuffer subjectBuf = new StringBuffer();
-    for(int i = 0; i < 100; i++) {
+    for(int i = 0; i < 10; i++) {
       subjectBuf.append("subject_"+i);
     }
     ae.setSubject(subjectBuf.toString());
     ae.setVerb("v");
     StringBuffer objectBuf = new StringBuffer();
-    for(int i = 0; i < 100; i++) {
+    for(int i = 0; i < 10; i++) {
       objectBuf.append("object__"+i);
     }
     ae.setObject(objectBuf.toString());
@@ -142,7 +142,7 @@ public class AuditEventDAOTest extends PersistorTestBase {
     ae.setClientApplication(clientApp);
 
     StringBuffer predicateBuf = new StringBuffer();
-    for(int i = 0; i < 100; i++) {
+    for(int i = 0; i < 10; i++) {
       predicateBuf.append("predicate_"+i);
     }
     ae.addPredicate(new Predicate("pkey", predicateBuf.toString()));

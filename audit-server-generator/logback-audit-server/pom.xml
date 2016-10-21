@@ -25,10 +25,10 @@
 
     <properties>
         <audit-server.version>0.6.1-SNAPSHOT</audit-server.version>
-        <logback-classic.version>1.0.0</logback-classic.version>
+        <logback.version>1.0.9</logback.version>
         <mysql-connector-java.version>6.0.4</mysql-connector-java.version>
         <maven-jetty-plugin.version>6.1.4</maven-jetty-plugin.version>
-        <c3p0.version>0.9.1.2</c3p0.version>
+        <c3p0.version>0.9.5.2</c3p0.version>
         <docker.maven.version>0.4.3</docker.maven.version>
         <!-- Test -->
         <junit.version>3.8.1</junit.version>
@@ -44,7 +44,12 @@
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
-            <version>${logback-classic.version}</version>
+            <version>${logback.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-core</artifactId>
+            <version>${logback.version}</version>
         </dependency>
 
         <!-- JDBC driver for MySQL -->
@@ -55,7 +60,7 @@
         </dependency>
 
         <dependency>
-            <groupId>c3p0</groupId>
+            <groupId>com.mchange</groupId>
             <artifactId>c3p0</artifactId>
             <version>${c3p0.version}</version>
         </dependency>

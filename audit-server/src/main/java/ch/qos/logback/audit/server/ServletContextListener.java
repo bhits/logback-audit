@@ -19,6 +19,7 @@ import java.util.Properties;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 
+import ch.qos.logback.classic.LoggerContext;
 import org.hibernate.cfg.Configuration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -41,6 +42,21 @@ public class ServletContextListener implements
     logger.info("Resetting configuration");
     Persistor.resetConfiguration(lock);
     auditServer.close();
+
+    // Wait and clean up 'Resource Destroyer in BasicResourcePool.close()' thread from c3p0
+    final String c3p0ResourceDestroyerName = "Resource Destroyer in BasicResourcePool.close()";
+    final Thread c3p0ResourceDestroyer = getThreadByName(c3p0ResourceDestroyerName);
+    if(c3p0ResourceDestroyer != null){
+      waitForThread(c3p0ResourceDestroyerName, c3p0ResourceDestroyer);
+    } else {
+      logger.info("Thread '" + c3p0ResourceDestroyerName + "' is not found");
+    }
+
+    // Stop logger context
+    if (LoggerFactory.getILoggerFactory() instanceof LoggerContext) {
+      logger.info("Stopping LoggerContext");
+      ((LoggerContext) LoggerFactory.getILoggerFactory()).stop();
+    }
   }
 
   public void contextInitialized(ServletContextEvent sce) {
@@ -79,5 +95,30 @@ public class ServletContextListener implements
     auditServer.start();
     servletContext.setAttribute(AuditServerConstants.AUDIT_SERVER_REFERENCE,
         auditServer);
+  }
+
+  private Thread getThreadByName(String threadName) {
+    for (Thread t : Thread.getAllStackTraces().keySet()) {
+      if (t.getName().equals(threadName)) return t;
+    }
+    return null;
+  }
+
+  private void waitForThread(String threadName, Thread thread) {
+    try {
+      logger.info("Found thread '" + threadName + "'");
+      logger.info("Waiting for thread '" + threadName + "' to finish");
+      thread.join();
+    } catch (InterruptedException e) {
+      logger.error("Error while waiting thread '" + threadName + "'", e);
+    } finally {
+      if(thread.isAlive()) {
+        logger.info("Thread '" + threadName + "' is alive");
+        logger.info("Interrupting thread '" + threadName + "'");
+        thread.interrupt();
+      } else {
+        logger.info("Thread '" + threadName + "' is not alive");
+      }
+    }
   }
 }

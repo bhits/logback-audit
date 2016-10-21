@@ -9,7 +9,7 @@
   <context-param>
     <description>Port to listen on</description>
     <param-name>PORT</param-name>
-    <param-value>9630</param-value>
+    <param-value>${audit.listen.port}</param-value>
   </context-param>
         
 

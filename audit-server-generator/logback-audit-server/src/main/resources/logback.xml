@@ -1,15 +1,7 @@
-<configuration>
+<?xml version="1.0" encoding="UTF-8" ?>
 
-  <appender name="STDOUT"
-    class="ch.qos.logback.core.ConsoleAppender">
-    <layout class="ch.qos.logback.classic.PatternLayout">
-      <param name="Pattern"
-        value="%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n" />
-    </layout>
-  </appender>
+<configuration scan="${AUTO_SCAN}" scanPeriod="${SCAN_PERIOD}">
 
-  <root>
-    <level value="INFO" />
-    <appender-ref ref="STDOUT" />
-  </root>
+  <include file="${C2S_PROPS}/logback-audit/config-template/logback-audit-config-logback_included.xml"/>
+
 </configuration>

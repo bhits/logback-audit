@@ -26,8 +26,10 @@
     <properties>
         <audit-server.version>0.6.1-SNAPSHOT</audit-server.version>
         <logback.version>1.0.9</logback.version>
+        <java.version>1.8</java.version>
         <mysql-connector-java.version>6.0.4</mysql-connector-java.version>
         <maven-jetty-plugin.version>6.1.4</maven-jetty-plugin.version>
+        <maven-compiler-plugin.version>3.5.1</maven-compiler-plugin.version>
         <c3p0.version>0.9.5.2</c3p0.version>
         <docker.maven.version>0.4.3</docker.maven.version>
         <!-- Test -->
@@ -85,6 +87,15 @@
                     <scanIntervalSeconds>0</scanIntervalSeconds>
                     <jettyConfig>src/etc/jetty.xml</jettyConfig>
                     <useTestClasspath>true</useTestClasspath>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven-compiler-plugin.version}</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
                 </configuration>
             </plugin>
             <plugin>

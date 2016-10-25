@@ -2,9 +2,8 @@
 -- first run mvnw clean install at audit-parent level and verify the changes are reflected in the target folders
 -- then go to audit-server-generator > logback-audit-server and run mvnw clean install and check the war file has the latest changes
 -- follow instructions mentioned in the installation document(hibernate.properties file change) and deploy the war in the appropriate servers
-alter table PREDICATE_MAP drop foreign key FK7E366E94A7D7F477;
-drop table if exists AUDIT_EVENT;
 drop table if exists PREDICATE_MAP;
+drop table if exists AUDIT_EVENT;
 create table AUDIT_EVENT (EVENT_ID bigint not null auto_increment, TIMESTAMP datetime not null, SUBJECT varchar(128) not null, VERB varchar(128) not null, OBJECT varchar(128), ORG_APP_NAME varchar(128), ORG_APP_IP_ADDRESS varchar(64), CLI_APP_NAME varchar(128) not null, CLI_APP_IP_ADDRESS varchar(64) not null, primary key (EVENT_ID));
 create table PREDICATE_MAP (EVENT_ID bigint not null, PREDICATE_VALUE mediumtext, PREDICATE_KEY varchar(128) not null, primary key (EVENT_ID, PREDICATE_KEY));
 create index CLI_APP_NAME_IDX on AUDIT_EVENT (CLI_APP_NAME);

@@ -93,11 +93,14 @@ If you have any questions, comments, or concerns please see [Consent2Share](http
 
 Please use [BHITS Logback Audit GitHub Issues](https://github.com/bhits/logback-audit/issues) page to report the issues related to Consent2Share modifications and [Logback Audit GitHub Issues](https://github.com/qos-ch/logback-audit/issues) page to report the issues related to the core Logback Audit framework.
 
-[//]: # (License)
+## License
+
+The Logback Audit license can be found at [http://audit.qos.ch/license.html](http://audit.qos.ch/license.html).
 
 ## Changes Made by the Consent2Share Development Team
 
 + Prepared this `README.md` file as a general technical documentation.
++ Prepared [`docs/docker-image-desc.md`](docs/docker-image-desc.md) file for DockerHub image description. 
 + Released an unofficial version `0.6.1` containing Consent2Share modifications and moved the master branch to the next development version `0.6.2-SNAPSHOT`.
 + Updated `.gitignore` file and created a `.gitattributes` file.
 + Modified the column sizes in hibernate mappings and adjusted the existing unit test accordingly.

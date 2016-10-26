@@ -34,16 +34,16 @@ This API uses *[MySQL](https://www.mysql.com/)* for persistence. It requires hav
 
 Currently, the Logback Audit Server does not support a database migration process, so the schema must be created manually. An [SQL file](audit-db/audit_tables-2014-04-07T102006.sql) is provided with this project to create the schema.
 
-This API requires a separate application server to run it. [Apache Tomcat 8](http://tomcat.apache.org/) is the recommended application server to run this API. This API listens on a port that is separate than the application server port to communicate with other audit clients. Please see the [Configure](#configure) section for details of configuring the port number to listen to.
+This API requires a separate application server to run it. [Apache Tomcat 8](http://tomcat.apache.org/) is the recommended application server to run this API. This API listens on a port that is different from the application server port to communicate with other audit clients. Please see the [Configure](#configure) section for details of configuring the port number to listen to.
 
 ### Deployment
 
 For easy deployment:
 
-1. Find the `war` file located in `audit-server-generator/logback-audit-server/target` folder after building the project
-2. Copy the `war` file to Tomcat's `webapps` folder
-3. Configure Tomcat for *Logback Audit Server* properties *(See [Configure](#configure) section)*
-4. Start up Tomcat
+1. Find the `war` file located in `audit-server-generator/logback-audit-server/target` folder after building the project.
+2. Copy the `war` file to Tomcat's `webapps` folder.
+3. Configure Tomcat for *Logback Audit Server* properties *(See [Configure](#configure) section)*.
+4. Start up Tomcat.
 
 Please refer to [Tomcat Web Application Deployment](http://tomcat.apache.org/tomcat-8.0-doc/deployer-howto.html) documentation for more details about Tomcat deployment.
 

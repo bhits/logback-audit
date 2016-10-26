@@ -21,9 +21,9 @@ This image provides the runtime environment for the generated *Logback Audit Ser
 
 For more information and related downloads for Consent2Share, please visit [Consent2Share](https://bhits.github.io/consent2share/).
 
-# How to use this image
+# How to Use This Image
 
-## Start a Logback Audit Server instance
+## Start a Logback Audit Server Instance
 
 Be sure to familiarize yourself with the repository's [README.md](https://github.com/bhits/logback-audit) file before starting the instance.
 
@@ -84,7 +84,7 @@ This is the port number that the audit server will listen to and communicate wit
 `docker run -d --name=logback-audit-server.c2s.com -e "CATALINA_OPTS=-Daudit.listen.port=9630" bhits/logback-audit-server:latest`
 
 
-# Supported Docker versions
+# Supported Docker Versions
 
 This image is officially supported on Docker version 1.12.1.
 

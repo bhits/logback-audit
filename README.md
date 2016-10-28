@@ -101,7 +101,7 @@ The Logback Audit license can be found at [http://audit.qos.ch/license.html](htt
 
 + Prepared this `README.md` file as a general technical documentation.
 + Prepared [`docs/docker-image-desc.md`](docs/docker-image-desc.md) file for DockerHub image description. 
-+ Released an unofficial version `0.6.1` containing Consent2Share modifications and moved the master branch to the next development version `0.6.2-SNAPSHOT`.
++ Released an unofficial version `0.6.1` containing Consent2Share modifications.
 + Updated `.gitignore` file and created a `.gitattributes` file.
 + Modified the column sizes in hibernate mappings and adjusted the existing unit test accordingly.
 + Generated a `logback-audit-server` project using `audit-server-generator` that supports:

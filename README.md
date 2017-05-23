@@ -99,6 +99,11 @@ The Logback Audit license can be found at [http://audit.qos.ch/license.html](htt
 
 ## Changes Made by the Consent2Share Development Team
 
+#### Release unofficial version `0.6.2`
++ Upgraded logback-core dependency and logback-classic dependency from `1.0.9` to `1.1.7`.
++ Updated this `README.md` file and [`docs/docker-image-desc.md`](docs/docker-image-desc.md) file.
+
+#### Release unofficial version `0.6.1`
 + Prepared this `README.md` file as a general technical documentation.
 + Prepared [`docs/docker-image-desc.md`](docs/docker-image-desc.md) file for DockerHub image description. 
 + Released an unofficial version `0.6.1` containing Consent2Share modifications.

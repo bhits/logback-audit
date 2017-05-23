@@ -8,24 +8,9 @@
     <name>Logback Audit Server</name>
     <version>0.6.2-SNAPSHOT</version>
 
-    <!-- This configuration is for BHITS team to deploy the artifacts to organization repository with 'mvn deploy' command -->
-    <!-- Please reconfigure based on your environment setup to run 'mvn deploy' -->
-    <distributionManagement>
-        <repository>
-            <id>deployment</id>
-            <name>Internal Releases</name>
-            <url>http://${maven.nexus.servername}/repository/releases/</url>
-        </repository>
-        <snapshotRepository>
-            <id>deployment</id>
-            <name>Internal Releases</name>
-            <url>http://${maven.nexus.servername}/repository/snapshots/</url>
-        </snapshotRepository>
-    </distributionManagement>
-
     <properties>
         <audit-server.version>0.6.2-SNAPSHOT</audit-server.version>
-        <logback.version>1.0.9</logback.version>
+        <logback.version>1.1.7</logback.version>
         <java.version>1.8</java.version>
         <mysql-connector-java.version>6.0.4</mysql-connector-java.version>
         <maven-jetty-plugin.version>6.1.4</maven-jetty-plugin.version>

@@ -9,7 +9,7 @@
     <version>0.6.2</version>
 
     <properties>
-        <audit-server.version>0.6.2-SNAPSHOT</audit-server.version>
+        <audit-server.version>0.6.2</audit-server.version>
         <logback.version>1.1.7</logback.version>
         <java.version>1.8</java.version>
         <mysql-connector-java.version>6.0.4</mysql-connector-java.version>

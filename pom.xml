@@ -6,7 +6,7 @@
 
   <groupId>ch.qos.logback</groupId>
   <artifactId>audit-parent</artifactId>
-  <version>0.6.2-SNAPSHOT</version>
+  <version>0.6.2</version>
   <packaging>pom</packaging>
   <name>Logback Audit Parent</name>
   <description>Logback Audit project</description>

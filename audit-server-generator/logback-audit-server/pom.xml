@@ -6,7 +6,7 @@
     <artifactId>logback-audit-server</artifactId>
     <packaging>war</packaging>
     <name>Logback Audit Server</name>
-    <version>0.6.2-SNAPSHOT</version>
+    <version>0.6.2</version>
 
     <properties>
         <audit-server.version>0.6.2-SNAPSHOT</audit-server.version>

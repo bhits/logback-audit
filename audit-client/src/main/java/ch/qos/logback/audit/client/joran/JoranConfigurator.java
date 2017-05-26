@@ -20,10 +20,10 @@ import ch.qos.logback.audit.client.joran.action.AuditorAction;
 import ch.qos.logback.core.joran.GenericConfigurator;
 import ch.qos.logback.core.joran.action.NestedBasicPropertyIA;
 import ch.qos.logback.core.joran.action.NestedComplexPropertyIA;
+import ch.qos.logback.core.joran.spi.ElementSelector;
 import ch.qos.logback.core.joran.spi.Interpreter;
-import ch.qos.logback.core.joran.spi.Pattern;
 import ch.qos.logback.core.joran.spi.RuleStore;
-
+import ch.qos.logback.core.joran.util.beans.BeanDescriptionCache;
 
 
 /**
@@ -35,18 +35,18 @@ public class JoranConfigurator extends GenericConfigurator {
 
   @Override
   public void addInstanceRules(RuleStore rs) {
-    rs.addRule(new Pattern("auditor"), new AuditorAction());
-    rs.addRule(new Pattern("auditor/appender"), new AuditAppenderAction());
+    rs.addRule(new ElementSelector("auditor"), new AuditorAction());
+    rs.addRule(new ElementSelector("auditor/appender"), new AuditAppenderAction());
   }
 
   @Override
   protected void addImplicitRules(Interpreter interpreter) {
     // The following line adds the capability to parse nested components
-    NestedComplexPropertyIA nestedComplexPropertyIA = new NestedComplexPropertyIA();
+    NestedComplexPropertyIA nestedComplexPropertyIA = new NestedComplexPropertyIA(new BeanDescriptionCache());
     nestedComplexPropertyIA.setContext(context);
     interpreter.addImplicitAction(nestedComplexPropertyIA);
 
-    NestedBasicPropertyIA nestedBasicIA = new NestedBasicPropertyIA();
+    NestedBasicPropertyIA nestedBasicIA = new NestedBasicPropertyIA(new BeanDescriptionCache());
     nestedBasicIA.setContext(context);
     interpreter.addImplicitAction(nestedBasicIA);
   }

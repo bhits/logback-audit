@@ -14,20 +14,22 @@
 
 package ch.qos.logback.audit.client;
 
-import java.net.InetAddress;
-import java.net.URL;
-import java.net.UnknownHostException;
-
 import ch.qos.logback.audit.Application;
 import ch.qos.logback.audit.AuditException;
 import ch.qos.logback.audit.client.joran.JoranConfigurator;
 import ch.qos.logback.core.joran.spi.JoranException;
 import ch.qos.logback.core.status.Status;
-import ch.qos.logback.core.status.StatusChecker;
 import ch.qos.logback.core.status.StatusManager;
+import ch.qos.logback.core.status.StatusUtil;
 import ch.qos.logback.core.util.Loader;
 import ch.qos.logback.core.util.OptionHelper;
 import ch.qos.logback.core.util.StatusPrinter;
+
+import java.net.InetAddress;
+import java.net.URL;
+import java.net.UnknownHostException;
+import java.util.Iterator;
+import java.util.List;
 
 public class AuditorFactory {
 
@@ -46,8 +48,7 @@ public class AuditorFactory {
 
   static void checkSanity(Auditor auditor) throws AuditException {
     StatusManager sm = auditor.getStatusManager();
-    StatusChecker checker = new StatusChecker(sm);
-    if (checker.getHighestLevel(0) > Status.INFO) {
+    if (getHighestLevel(0, sm) > Status.INFO) {
       StatusPrinter.print(sm);
     }
     
@@ -59,6 +60,21 @@ public class AuditorFactory {
       throw new AuditException("No audit appender. Please see "
           + NULL_AUDIT_APPENDER_URL);
     }
+  }
+
+  public static int getHighestLevel(long threshold, StatusManager sm ) {
+    List filteredList = StatusUtil.filterStatusListByTimeThreshold(sm.getCopyOfStatusList(), threshold);
+    int maxLevel = 0;
+    Iterator i$ = filteredList.iterator();
+
+    while(i$.hasNext()) {
+      Status s = (Status)i$.next();
+      if(s.getLevel() > maxLevel) {
+        maxLevel = s.getLevel();
+      }
+    }
+
+    return maxLevel;
   }
 
   public static void setApplicationName(String name) throws AuditException {

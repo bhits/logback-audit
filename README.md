@@ -1,8 +1,8 @@
 # Logback Audit Server
 
-The Consent2Share (C2S) application uses [Logback Audit](http://audit.qos.ch/) as a centralized audit repository in backend services, particularly in the Access Control Service components. Logback Audit can be configured to use relational databases for persistence.
+The Consent2Share application uses [Logback Audit](http://audit.qos.ch/) as a centralized audit repository in backend services, particularly in the Access Control Service components. Logback Audit can be configured to use relational databases for persistence.
 
-C2S currently uses a fork of the [Logback Audit project](https://github.com/qos-ch/logback-audit). This fork is fundamentally the same as the  original Logback Audit implementation. However, it has some dependency version updates and column size modifications in the database tables. It also includes an SQL script for database creation and a generated *Logback Audit Server* project that can be built and deployed on an application server such as [Apache Tomcat](http://tomcat.apache.org/).
+Consent2Share currently uses a fork of the [Logback Audit project](https://github.com/qos-ch/logback-audit). This fork is fundamentally the same as the  original Logback Audit implementation. However, it has some dependency version updates and column size modifications in the database tables. It also includes an SQL script for database creation and a generated *Logback Audit Server* project that can be built and deployed on an application server such as [Apache Tomcat](http://tomcat.apache.org/).
 
 ## Build
 
@@ -99,6 +99,11 @@ The Logback Audit license can be found at [http://audit.qos.ch/license.html](htt
 
 ## Changes Made by the Consent2Share Development Team
 
+#### Release unofficial version `0.6.2`
++ Upgraded logback-core dependency and logback-classic dependency from `1.0.9` to `1.1.7`.
++ Updated this `README.md` file and [`docs/docker-image-desc.md`](docs/docker-image-desc.md) file.
+
+#### Release unofficial version `0.6.1`
 + Prepared this `README.md` file as a general technical documentation.
 + Prepared [`docs/docker-image-desc.md`](docs/docker-image-desc.md) file for DockerHub image description. 
 + Released an unofficial version `0.6.1` containing Consent2Share modifications.

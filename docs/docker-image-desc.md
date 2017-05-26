@@ -7,15 +7,17 @@ Logback Audit Server is responsible for storing audit events from audit clients.
 
 # Supported Tags and Respective `Dockerfile` Links
 
-[`0.6.1`](https://github.com/bhits/logback-audit/blob/master/audit-server-generator/logback-audit-server/src/main/docker/Dockerfile),[`latest`](https://github.com/bhits/logback-audit/blob/master/audit-server-generator/logback-audit-server/src/main/docker/Dockerfile)[(0.6.1/Dockerfile)](https://github.com/bhits/logback-audit/blob/master/audit-server-generator/logback-audit-server/src/main/docker/Dockerfile)
+[`0.6.2 (latest)`](https://github.com/bhits/logback-audit/releases/tag/v_0.6.2), [`0.6.1`](https://github.com/bhits/logback-audit/releases/tag/v_0.6.1)
+
+[`Current Dockerfile`](https://github.com/bhits/logback-audit/blob/master/audit-server-generator/logback-audit-server/src/main/docker/Dockerfile)
 
 For more information about this image, the source code, and its history, please see the [GitHub repository](https://github.com/bhits/logback-audit).
 
 # What is Logback Audit Server?
 
-The Consent2Share (C2S) application uses [Logback Audit](http://audit.qos.ch/) as a centralized audit repository in backend services, particularly in the Access Control Service components. Logback Audit can be configured to use relational databases for persistence.
+The Consent2Share application uses [Logback Audit](http://audit.qos.ch/) as a centralized audit repository in backend services, particularly in the Access Control Service components. Logback Audit can be configured to use relational databases for persistence.
 
-C2S currently uses a fork of the [Logback Audit project](https://github.com/qos-ch/logback-audit). This fork is fundamentally the same as the  original Logback Audit implementation. However, it has some dependency version updates and column size modifications in the database tables. It also includes an SQL script for database creation and a generated *Logback Audit Server* project that can be built and deployed on an application server such as [Apache Tomcat](http://tomcat.apache.org/).
+Consent2Share currently uses a fork of the [Logback Audit project](https://github.com/qos-ch/logback-audit). This fork is fundamentally the same as the  original Logback Audit implementation. However, it has some dependency version updates and column size modifications in the database tables. It also includes an SQL script for database creation and a generated *Logback Audit Server* project that can be built and deployed on an application server such as [Apache Tomcat](http://tomcat.apache.org/).
 
 This image provides the runtime environment for the generated *Logback Audit Server* application.
 

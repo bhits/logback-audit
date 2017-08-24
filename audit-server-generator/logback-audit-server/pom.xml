@@ -17,9 +17,39 @@
         <maven-compiler-plugin.version>3.5.1</maven-compiler-plugin.version>
         <c3p0.version>0.9.5.2</c3p0.version>
         <docker.maven.version>0.4.3</docker.maven.version>
+        <maven-enforcer-plugin.version>3.0.0-M1</maven-enforcer-plugin.version>
+        <common-collections.version>2.1.1</common-collections.version>
+        <hibernate.version>3.2.2.ga</hibernate.version>
+        <jta.version>1.1</jta.version>
+        <slf4j-api.version>1.7.20</slf4j-api.version>
         <!-- Test -->
         <junit.version>3.8.1</junit.version>
     </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>commons-collections</groupId>
+                <artifactId>commons-collections</artifactId>
+                <version>${common-collections.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.hibernate</groupId>
+                <artifactId>hibernate</artifactId>
+                <version>${hibernate.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>javax.transaction</groupId>
+                <artifactId>jta</artifactId>
+                <version>${jta.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>${slf4j-api.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <dependencies>
         <dependency>
@@ -101,6 +131,47 @@
                         </resource>
                     </resources>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-enforcer-plugin</artifactId>
+                <version>${maven-enforcer-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>enforce-banned-dependencies</id>
+                        <goals>
+                            <goal>enforce</goal>
+                            <goal>display-info</goal>
+                        </goals>
+                        <configuration>
+                            <rules>
+                                <bannedDependencies>
+                                    <excludes>
+                                        <exclude>de.codecentric:spring-boot-admin-sample-eureka:(,1.4.4]</exclude>
+                                        <exclude>com.fasterxml.jackson.core:jackson-databind:(,2.8.8]</exclude>
+                                        <exclude>org.apache.tomcat.embed:tomcat-embed-core:(,8.5.12]</exclude>
+                                        <exclude>org.apache.tomcat.embed:tomcat-embed-core:[9.0.0.M1,9.0.0.M18]</exclude>
+                                        <exclude>org.codehaus.jackson:jackson-mapper-asl:(,1.9.13]</exclude>
+                                        <exclude>org.drools:drools-core:(,6.2.0.Final)</exclude>
+                                        <exclude>org.openwms.configuration:(,1.0.0]</exclude>
+                                        <exclude>org.openwms:org.openwms.configuration:(,1.0.0]</exclude>
+                                        <exclude>org.openwms:org.openwms.services:(,1.0.0]</exclude>
+                                        <exclude>xerces:xercesImpl:(,2.11.0]</exclude>
+
+                                        <!--Banned dependencies that are found are commented -->
+                                        <!--<exclude>ch.qos.logback:logback-classic:(,1.1.11]</exclude>-->
+                                        <!--<exclude>com.thoughtworks.xstream:xstream:(,1.4.9]</exclude>-->
+                                        <!--<exclude>io.netty:netty-handler:(,4.1.1.Final)</exclude>-->
+                                        <!--<exclude>org.bouncycastle:bcprov-jdk15on:(,1.55]</exclude>-->
+                                    </excludes>
+                                </bannedDependencies>
+                                <dependencyConvergence/>
+                                <banDuplicatePomDependencyVersions/>
+                            </rules>
+                            <fail>true</fail>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>

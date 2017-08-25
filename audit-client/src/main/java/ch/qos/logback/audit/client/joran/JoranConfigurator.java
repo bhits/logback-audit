@@ -42,11 +42,11 @@ public class JoranConfigurator extends GenericConfigurator {
   @Override
   protected void addImplicitRules(Interpreter interpreter) {
     // The following line adds the capability to parse nested components
-    NestedComplexPropertyIA nestedComplexPropertyIA = new NestedComplexPropertyIA(new BeanDescriptionCache());
+    NestedComplexPropertyIA nestedComplexPropertyIA = new NestedComplexPropertyIA(new BeanDescriptionCache(context));
     nestedComplexPropertyIA.setContext(context);
     interpreter.addImplicitAction(nestedComplexPropertyIA);
 
-    NestedBasicPropertyIA nestedBasicIA = new NestedBasicPropertyIA(new BeanDescriptionCache());
+    NestedBasicPropertyIA nestedBasicIA = new NestedBasicPropertyIA(new BeanDescriptionCache(context));
     nestedBasicIA.setContext(context);
     interpreter.addImplicitAction(nestedBasicIA);
   }

@@ -6,20 +6,50 @@
     <artifactId>logback-audit-server</artifactId>
     <packaging>war</packaging>
     <name>Logback Audit Server</name>
-    <version>0.6.2</version>
+    <version>0.6.3</version>
 
     <properties>
-        <audit-server.version>0.6.2</audit-server.version>
-        <logback.version>1.1.7</logback.version>
+        <audit-server.version>0.6.3</audit-server.version>
+        <logback.version>1.2.3</logback.version>
         <java.version>1.8</java.version>
         <mysql-connector-java.version>6.0.4</mysql-connector-java.version>
         <maven-jetty-plugin.version>6.1.4</maven-jetty-plugin.version>
         <maven-compiler-plugin.version>3.5.1</maven-compiler-plugin.version>
         <c3p0.version>0.9.5.2</c3p0.version>
         <docker.maven.version>0.4.3</docker.maven.version>
+        <maven-enforcer-plugin.version>3.0.0-M1</maven-enforcer-plugin.version>
+        <common-collections.version>2.1.1</common-collections.version>
+        <hibernate.version>3.2.2.ga</hibernate.version>
+        <jta.version>1.1</jta.version>
+        <slf4j-api.version>1.7.20</slf4j-api.version>
         <!-- Test -->
         <junit.version>3.8.1</junit.version>
     </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>commons-collections</groupId>
+                <artifactId>commons-collections</artifactId>
+                <version>${common-collections.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.hibernate</groupId>
+                <artifactId>hibernate</artifactId>
+                <version>${hibernate.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>javax.transaction</groupId>
+                <artifactId>jta</artifactId>
+                <version>${jta.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>${slf4j-api.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <dependencies>
         <dependency>
@@ -101,6 +131,65 @@
                         </resource>
                     </resources>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-enforcer-plugin</artifactId>
+                <version>${maven-enforcer-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>enforce-banned-dependencies</id>
+                        <goals>
+                            <goal>enforce</goal>
+                            <goal>display-info</goal>
+                        </goals>
+                        <configuration>
+                            <rules>
+                                <bannedDependencies>
+                                    <excludes>
+                                        <exclude>ch.qos.logback:logback-classic:(,1.1.11]</exclude>
+                                        <exclude>com.fasterxml.jackson.core:jackson-databind:(,2.8.9]</exclude>
+                                        <exclude>com.netflix.ribbon:ribbon-httpclient:jar:(,2.2.0]</exclude>
+                                        <exclude>com.sun.jersey:jersey-core:(,1.19.1]</exclude>
+                                        <exclude>com.thoughtworks.xstream:xstream:(,1.4.9]</exclude>
+                                        <exclude>commons-configuration:commons-configuration:(,1.8]</exclude>
+                                        <exclude>de.codecentric:spring-boot-admin-sample-eureka:(,1.4.4]</exclude>
+                                        <exclude>io.netty:netty-handler:(,4.1.1.Final)</exclude>
+                                        <exclude>javax.xml.stream:stax-api:(,1.0-2]</exclude>
+                                        <exclude>mysql:mysql-connector-java:(,5.1.41]</exclude>
+                                        <exclude>org.apache.httpcomponents:httpclient:jar:(,4.5.2]</exclude>
+                                        <exclude>org.apache.httpcomponents:httpcore:(,4.4.6]</exclude>
+                                        <exclude>org.apache.tomcat.embed:tomcat-embed-core:(,8.5.14]</exclude>
+                                        <exclude>org.apache.tomcat.embed:tomcat-embed-core:[9.0.0.M1,9.0.0.M18]</exclude>
+                                        <exclude>org.bouncycastle:bcprov-jdk15on:(,1.55]</exclude>
+                                        <exclude>org.codehaus.jackson:jackson-mapper-asl:(,1.9.13]</exclude>
+                                        <exclude>org.drools:drools-core:(,6.2.0.Final)</exclude>
+                                        <exclude>org.eclipse.acceleo:org.eclipse.ocl:(,3.4.2.v20140725-2242]</exclude>
+                                        <exclude>org.hibernate:hibernate-entitymanager:(,5.0.12.Final]</exclude>
+                                        <exclude>org.modelmapper:modelmapper:(,0.7.8]</exclude>
+                                        <exclude>org.openwms.configuration:(,1.0.0]</exclude>
+                                        <exclude>org.openwms:org.openwms.configuration:(,1.0.0]</exclude>
+                                        <exclude>org.openwms:org.openwms.services:(,1.0.0]</exclude>
+                                        <exclude>org.springframework.batch:spring-batch-core:(,3.0.7.RELEASE]</exclude>
+                                        <exclude>org.springframework.boot:spring-boot-actuator:(,1.5.6.RELEASE]</exclude>
+                                        <exclude>org.springframework.boot:spring-boot-autoconfigure:(,1.5.6.RELEASE]</exclude>
+                                        <exclude>org.springframework.cloud:spring-cloud-config-client:(,1.3.2.RELEASE]</exclude>
+                                        <exclude>org.springframework.data:spring-data-rest-webmvc:(,2.5.7.RELEASE]</exclude>
+                                        <exclude>org.springframework.security:spring-security-crypto:(,4.2.3.RELEASE]</exclude>
+                                        <exclude>org.springframework.security:spring-security-rsa:(,1.0.3.RELEASE]</exclude>
+                                        <exclude>org.springframework:spring-web:jar:(,4.3.6.RELEASE]</exclude>
+                                        <exclude>org.springframework:spring-webmvc:(,4.3.6.RELEASE]</exclude>
+                                        <exclude>xerces:xercesImpl:(,2.11.0]</exclude>
+                                        <exclude>xml-apis:xml-apis:(,1.4.01]</exclude>
+                                    </excludes>
+                                </bannedDependencies>
+                                <dependencyConvergence/>
+                                <banDuplicatePomDependencyVersions/>
+                            </rules>
+                            <fail>true</fail>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>

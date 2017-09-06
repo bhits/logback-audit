@@ -7,7 +7,7 @@ Logback Audit Server is responsible for storing audit events from audit clients.
 
 # Supported Tags and Respective `Dockerfile` Links
 
-[`0.6.2 (latest)`](https://github.com/bhits/logback-audit/releases/tag/v_0.6.2), [`0.6.1`](https://github.com/bhits/logback-audit/releases/tag/v_0.6.1)
+[`0.6.3 (latest)`](https://github.com/bhits/logback-audit/releases/tag/v_0.6.3), [`0.6.2`](https://github.com/bhits/logback-audit/releases/tag/v_0.6.2), [`0.6.1`](https://github.com/bhits/logback-audit/releases/tag/v_0.6.1)
 
 [`Current Dockerfile`](https://github.com/bhits/logback-audit/blob/master/audit-server-generator/logback-audit-server/src/main/docker/Dockerfile)
 

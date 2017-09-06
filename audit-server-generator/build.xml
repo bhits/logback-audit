@@ -1,7 +1,7 @@
 <project name="pokinmon-generator" default="usage" basedir="." >
 
-  <property name="logback-audit-version" value="0.6.2"/>
-  <property name="project-version" value="0.6.2"/>
+  <property name="logback-audit-version" value="0.6.3"/>
+  <property name="project-version" value="0.6.3"/>
 
   <target name="usage">
     <echo>

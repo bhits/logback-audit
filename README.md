@@ -99,6 +99,12 @@ The Logback Audit license can be found at [http://audit.qos.ch/license.html](htt
 
 ## Changes Made by the Consent2Share Development Team
 
+#### Release unofficial version `0.6.3`
++ Added [Maven Enforcer Plugin](http://maven.apache.org/enforcer/maven-enforcer-plugin/) configuration with a list of banned dependencies to the generated `logback-audit-server` project.
++ Added dependency management to the generated `logback-audit-server` project to resolve dependency convergence issues.
++ Upgraded `logback` version to `1.2.3`
++ Updated this `README.md` file and [`docs/docker-image-desc.md`](docs/docker-image-desc.md) file.
+
 #### Release unofficial version `0.6.2`
 + Upgraded logback-core dependency and logback-classic dependency from `1.0.9` to `1.1.7`.
 + Updated this `README.md` file and [`docs/docker-image-desc.md`](docs/docker-image-desc.md) file.
